@@ -1,0 +1,26 @@
+# Compiled Object files
+*.o
+
+# Compiled binaries
+minishell
+printargs
+sum
+uppercase
+
+# Zip archives
+*.zip
+
+# Text files that might be outputs or temporary data
+*.txt
+
+# Editor temporary files
+*~
+*.swp
+
+# Directory for compiled executables
+/test/
+
+# Ignore specific IDE and OS generated files
+.DS_Store
+.idea/
+.vscode/
