@@ -28,7 +28,6 @@ typedef struct
     int write_fd; // Write end of the pipe
 } PipeFD;
 
-// Auxiliary function to trim strings (remove leading and trailing whitespaces)
 // Function to trim leading and trailing whitespace in place
 void trim(char *str)
 {
@@ -117,9 +116,6 @@ void parse_single_command(char *segment, Command *command)
 
     command->args[argCount] = NULL; // NULL-terminate the arguments array
 }
-
-// Function to verify the input string
-#include <stdbool.h>
 
 // Returns true if input is valid, false if there is an error
 bool verify_input(char *input)
@@ -348,11 +344,6 @@ int main()
 {
     char input[MAX_LINE]; // Buffer for the user input
 
-    // char *command;
-    // char **args = malloc(MAX_ARGS * sizeof(char*)); // Array of arguments
-    // char *inputFile;
-    // char *outputFile;
-
     // Initiate array of commands
     Command commands[MAX_COMMANDS];
     for (int i = 0; i < MAX_COMMANDS; i++)
@@ -375,28 +366,27 @@ int main()
         input[strcspn(input, "\n")] = '\0';
 
         // Parse the input into commands
-        printf("***** PARSING *****\n\n");
         int numCommands = 0;                        // Number of parsed commands
         parse_input(input, commands, &numCommands); // Parse the input
 
-        printf("\n\n***** DEBUGGING *****\n\n");
-        // Debugging: print the parsed commands
-        printf("Number of commands: %d\n\n", numCommands);
-        for (int i = 0; i < numCommands; i++)
-        {
-            printf("Command %d: %s\n", i, commands[i].command);
-            printf("Arguments: ");
-            for (int j = 0; commands[i].args[j] != NULL; j++)
-            {
-                printf("%s ", commands[i].args[j]);
-            }
-            printf("\n");
-            printf("Input file: %s\n", commands[i].inputFile);
-            printf("Output file: %s\n\n", commands[i].outputFile);
-        }
+        // printf("\n\n***** DEBUGGING *****\n\n");
+        // // Debugging: print the parsed commands
+        // printf("Number of commands: %d\n\n", numCommands);
+        // for (int i = 0; i < numCommands; i++)
+        // {
+        //     printf("Command %d: %s\n", i, commands[i].command);
+        //     printf("Arguments: ");
+        //     for (int j = 0; commands[i].args[j] != NULL; j++)
+        //     {
+        //         printf("%s ", commands[i].args[j]);
+        //     }
+        //     printf("\n");
+        //     printf("Input file: %s\n", commands[i].inputFile);
+        //     printf("Output file: %s\n\n", commands[i].outputFile);
+        // }
 
         // Execute the parsed commands
-        // execute_commands(commands, &numCommands);
+        execute_commands(commands, &numCommands);
 
         // Reset the command structures and the counter for the next iteration
         reset_commands(commands, &numCommands);
